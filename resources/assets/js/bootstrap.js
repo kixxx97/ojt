@@ -7,7 +7,10 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
+import Pusher from "pusher-js"
+
 window.$ = window.jQuery = require('jquery');
+
 
 require('bootstrap-sass');
 
@@ -38,7 +41,9 @@ window.axios.defaults.headers.common = {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from "laravel-echo"
+
+
+window.Echo = require('laravel-echo');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',

@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <link href='css/app.css' rel="stylesheet">
 
     <style>
         .chat {
@@ -122,6 +122,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src='js/app.js'></script>
 </body>
 </html>

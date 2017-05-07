@@ -20,7 +20,7 @@ const app = new Vue({
     el: '#app',
     
     data: {
-        messages: []
+        messages: []    
     },
 
     created() {

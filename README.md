@@ -1,4 +1,4 @@
-# laravel-chat
+<!--# laravel-chat
 Build a chat app with Laravel and Pusher
 
 ### Getting Started
@@ -72,4 +72,5 @@ And finally, start the application:
 php artisan serve
 ```
 
-and visit [http://localhost:8000/](http://localhost:8000/) to see the application in action.
+and visit [http://localhost:8000/](http://localhost:8000/) to see the application in action.-->
+laravel 5.4 chat application for 1 and 1 it company

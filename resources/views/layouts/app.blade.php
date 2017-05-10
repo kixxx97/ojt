@@ -119,6 +119,7 @@
         </nav>
 
         @yield('content')
+        @yield('yow')
     </div>
 
     <!-- Scripts -->

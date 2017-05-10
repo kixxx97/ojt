@@ -50,11 +50,19 @@ class ChatsController extends Controller
         $user = Auth::user();
 
         $message = $user->messages()->create([
-            'message' => $request->input('message')
+            'message' => $request->input('message'),
+            'recipient_id' => $request->input('recipient')
         ]);
-
-        broadcast(new MessageSent($user, $message))->toOthers();
+        if($request->input('recipient_id'))
+            $bla;
+        else
+            broadcast(new MessageSent($user, $message))->toOthers();
 
         return ['status' => 'Message Sent!'];
+    }
+
+    public function peerChat()
+    {
+        return view('peerChat');
     }
 }

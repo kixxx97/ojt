@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Message extends Model
 {
@@ -11,7 +12,7 @@ class Message extends Model
      *
      * @var array
      */
-    protected $fillable = ['message'];
+    protected $fillable = ['message','recipient_id','room_id'];
 
     /**
      * A message belong to a user
@@ -21,5 +22,11 @@ class Message extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function sender()
+    {
+        return $this->belongsTo('App\User','recipient_id','id');
+        
     }
 }

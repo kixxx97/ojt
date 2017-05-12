@@ -38,6 +38,6 @@ class SendToPeer
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('peerchat');
+        return new PresenceChannel('irrelevant');
     }
 }

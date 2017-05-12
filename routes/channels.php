@@ -15,6 +15,6 @@ Broadcast::channel('chat', function ($user) {
     return Auth::check();
 });
 
-// Broadcast::channel('peerchat', function($user) {
-// authorization here, userid && 
-// });
+Broadcast::channel('peerchat', function($user) {
+    return $user;     
+});

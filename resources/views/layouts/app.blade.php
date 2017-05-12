@@ -120,9 +120,10 @@
 
         @yield('content')
         @yield('yow')
-    </div>
 
     <!-- Scripts -->
     <script src='js/app.js'></script>
+
+    
 </body>
 </html>

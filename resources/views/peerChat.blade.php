@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div id="app" class="col-md-6">
             <div class="panel panel-default">
             @if(Auth::user()->roles == 'agent')
                 <div class="panel-heading">Public</div>
@@ -45,7 +45,7 @@
                     <private-form
                         v-on:messagesent="addMessage"
                         :user="{{ Auth::user() }}"
-                        :room = " {{ $room }}"
+                        :room="{{ $room->id }}"
                     ></private-form>
                 </div>
             </div>
@@ -58,6 +58,8 @@
 </div>
 
 <script>
+    var recipient = {!! $recipient->id !!};
+    var userData = {!! Auth::user() !!};
     var vueData = {!! $room !!};
 </script>
 @endsection

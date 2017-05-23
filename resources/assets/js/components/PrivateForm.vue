@@ -9,10 +9,10 @@
         </span>
     </div>
 </template>
-
+    
 <script>    
     export default {
-        props: ['user','recipient'],
+        props: ['user','room'],
 
         data() {
             return {
@@ -22,9 +22,13 @@
 
         methods: {
             sendMessage() { 
+                console.log(this.newMessage);
+                console.log(this.room);
+                console.log(this.user);
                 this.$emit('messagesent', {
                     user: this.user,
-                    message: this.newMessage    
+                    message: this.newMessage,
+                    room: this.room    
                 });
 
                 this.newMessage = ''

@@ -48,6 +48,6 @@ window.Echo = require('laravel-echo');
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: Laravel.pusherKey,
-    cluster: 'eu',
-    encrypted: true
+    cluster: 'ap1',
+    encrypted: false
 });

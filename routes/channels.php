@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels
@@ -10,11 +11,14 @@
 | used to check if an authenticated user can listen to the channel.
 |
 */
-
 Broadcast::channel('chat', function ($user) {
     return Auth::check();
 });
 
-Broadcast::channel('peerchat', function($user) {
-    return $user;     
+Broadcast::channel('chat.{userId}', function ($user, User $userId) {
+    return $userId;
+});
+
+Broadcast::channel('chatroom.{userId}', function ($user, User $userId) {
+    return $userId;
 });

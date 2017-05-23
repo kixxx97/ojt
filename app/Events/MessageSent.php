@@ -48,6 +48,19 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat');
+        if($this->user->roles == 'IT')
+        {
+            if($this->message->room_id == null)
+            return new PresenceChannel('chat.'.$this->message->recipient_id);
+            else
+            return new PrivateChannel('chatroom.'.$this->message->room_id);
+        }
+        else
+        {
+            if($this->message->room_id == null)
+            return new PresenceChannel('chat.'.$this->message->user_id);
+            else
+            return new PrivateChannel('chatroom.'.$this->message->room_id);
+        }
     }
 }

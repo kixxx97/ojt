@@ -8,8 +8,10 @@ use App\User;
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\SendMessage;
 
 class ChatsController extends Controller
+
 {
     /**
      * Create a new controller instance.
@@ -40,28 +42,18 @@ class ChatsController extends Controller
     {
         if(Auth::user()->roles == 'agent')
         {    
-        if($request->input('id'))
-        {
-            $recipient = json_decode($request->input('id'));
-            $id = $recipient['id'];
-            return Message::where('room_id', $request->input('room_id'))->with('sender')->with('user')->get(); 
-        }
-        else{
             return Message::where('user_id',Auth::user()->id)->where('room_id', null)->orWhere('recipient_id',Auth::user()->id)->with('user')->get();
-            //all messages coming from him  and for him and that null ang room id
-        }
         }
         else
         {
-            if($request->input('id'))
-            {
-
-            }
-            else{
-            return Message::where('user_id','1')->orWhere('recipient_id','1')->where('room_id',null)->with('user')->get();
-            // all messages for agent
-            }
+            $user = $request->input('user_id');
+            return Message::where('user_id',$user)->where('room_id',null)->orWhere('recipient_id',$user)->with('user')->get();
         }
+    }
+
+    public function fetchPrivateMessages(Request $request)
+    {
+        return Message::where('room_id', $request->input('room'))->with('user')->get();
     }
 
     /**
@@ -71,12 +63,12 @@ class ChatsController extends Controller
      * @return Response
      */
     public function sendMessage(Request $request)
-    {
+    {   
         $user = Auth::user();
-        
+        // dd($request->input());
         $message = $user->messages()->create([
             'message' => $request->input('message'),
-            'room_id' => $request->input('room_id'),
+            'room_id' => $request->input('room'),
             'recipient_id' => $request->input('recipient')
         ]);
         broadcast(new MessageSent($user, $message))->toOthers();
@@ -90,6 +82,7 @@ class ChatsController extends Controller
         {
         $recipient = User::where('roles','IT')->firstOrFail();
         $room = Room::where('member1',Auth::user()->id)->where('member2',$recipient->id)->firstOrFail();
+        $recipient = Auth::user();
         }
         else
         {
@@ -97,5 +90,10 @@ class ChatsController extends Controller
         $room = Room::where('member1',$recipient->id)->where('member2',Auth::user()->id)->firstOrFail();
         }
         return view('peerChat',compact('recipient','room'));
+    }
+
+    public function sendMail()
+    {
+        \Mail::to('test@example.com')->send(new SendMessage);
     }
 }

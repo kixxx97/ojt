@@ -14,6 +14,8 @@
 Auth::routes();
 
 Route::get('/', 'ChatsController@index');
-Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages/public', 'ChatsController@fetchMessages');
+Route::post('messages/private', 'ChatsController@fetchPrivateMessages');
 Route::post('messages', 'ChatsController@sendMessage');
-Route::get('peers', 'ChatsController@peerChat');
+Route::get('peers', 'ChatsController@peerChat');    
+Route::get('mail', 'ChatsController@sendMail');

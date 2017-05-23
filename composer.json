@@ -6,10 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "doctrine/dbal": "v2.4.2",
+        "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "pusher/pusher-php-server": "^2.6",
-        "doctrine/dbal": "v2.4.2"
+        "pusher/pusher-php-server": "^2.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

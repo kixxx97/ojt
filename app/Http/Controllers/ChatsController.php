@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendMessage;
 
-class ChatsController extends Controller
+<!--  -->lass ChatsController extends Controller
 
 {
     /**
